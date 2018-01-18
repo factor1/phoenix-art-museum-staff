@@ -1,0 +1,76 @@
+.staff-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  margin: 0 auto;
+}
+
+.s-row {
+  -ms-flex: 0 1 auto;
+      flex: 0 1 auto;
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-align: start;
+      align-items: flex-start;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+}
+
+.s-row .s-row {
+  margin-left: -0.8rem;
+  margin-right: -0.8rem;
+  width: auto;
+}
+
+.s-col-6 {
+  -ms-flex: 0 1 auto;
+      flex: 0 1 auto;
+  -ms-flex-preferred-size: 50.0%;
+      flex-basis: 50.0%;
+  position: relative;
+  box-sizing: border-box;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  min-width: 0;
+}
+
+.staff-directory-options {
+  color: #005cb9;
+  font: 700 12px/14px 'Fira Sans';
+}
+
+.search-submit {
+  color: #666666;
+  font: 700 12px/14px 'Fira Sans';
+}
+
+.staff-directory-sort {
+  color: #808080;
+  font: 400 12px/14px 'Fira Sans';
+}
+
+.staff-directory-sort__options {
+  color: #00afaa;
+  font: 400 12px/14px 'Fira Sans';
+}
