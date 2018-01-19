@@ -152,6 +152,29 @@
   }
 }
 
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .s-col-2 {
+    width: 16.66667%;
+    -ms-flex-preferred-size: auto;
+        flex-basis: auto; }
+  .s-col-5 {
+    width: 41.66666%;
+    -ms-flex-preferred-size: auto;
+        flex-basis: auto; }
+  .s-col-6 {
+    width: 50.0%;
+    -ms-flex-preferred-size: auto;
+        flex-basis: auto; }
+  .s-col-10 {
+    width: 83.33333%;
+    -ms-flex-preferred-size: auto;
+        flex-basis: auto; }
+  .s-col-12 {
+    width: 100.0%;
+    -ms-flex-preferred-size: auto;
+        flex-basis: auto; } 
+}
+
 
 
 /************************* Search and Sort Options *************************/
@@ -177,12 +200,14 @@
 
 .search-field__select {
   position: relative;
+  padding: 5px 10px;
   height: 26px;
   width: 100%;
   font: 400 12px/14px 'Fira Sans', sans-serif;
   border-radius: 5px;
   border: 1px solid #f0f0f0;
-  background-color: #FFFFFF;
+  -webkit-appearance: none;
+  background-color: transparent;
 }
 
 .search-field__select:after {
@@ -196,9 +221,9 @@
 }
 
 .search-submit {
-  min-width: 60px;
+  min-width: 65px;
   position: absolute;
-  right: -1px;
+  right: -2px;
   top: 0;
   padding: 5px 10px;
   border-radius: 0 5px 5px 0;
@@ -209,7 +234,11 @@
 }
 
 .select-submit {
-  right: 0;
+  right: -2px;
+}
+
+.safari .select-submit {
+  top: -2px;
 }
 
 .search-submit:hover {
