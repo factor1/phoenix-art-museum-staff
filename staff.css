@@ -172,7 +172,7 @@
   .s-col-12 {
     width: 100.0%;
     -ms-flex-preferred-size: auto;
-        flex-basis: auto; } 
+        flex-basis: auto; }
 }
 
 
@@ -334,6 +334,7 @@
 img {
   width: 100%;
   max-width: 200px;
+  height: 100%;
 }
 
 .staff-name {
