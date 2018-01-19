@@ -28,7 +28,7 @@
         <input type="submit" class="search-submit select-submit" value="Sort">
       </form>
     </div>
-    <div class="s-col-2 col--flex-column">
+    <div class="s-col-2 col--flex-column s-sm-hide">
       <h6 class="staff-directory-options">View as:</h6>
       <div class="s-row">
         <div class="s-col-12 col--justify-content-space-around">
@@ -40,8 +40,49 @@
   </div>
 
   <div class="s-row staff-sort">
-    <div class="s-col-12 col--justify-content-center">
+    <div class="s-col-12 col--justify-content-center s-sm-hide">
       <span class="staff-sort__text">Jump to:</span>
+      <select class="staff-sort__options">
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+        <option value="E">E</option>
+        <option value="F">F</option>
+        <option value="G">G</option>
+        <option value="H">H</option>
+        <option value="I">I</option>
+        <option value="J">J</option>
+        <option value="K">K</option>
+        <option value="L">L</option>
+        <option value="M">M</option>
+        <option value="N">N</option>
+        <option value="O">O</option>
+        <option value="P">P</option>
+        <option value="Q">Q</option>
+        <option value="R">R</option>
+        <option value="S">S</option>
+        <option value="T">T</option>
+        <option value="U">U</option>
+        <option value="V">V</option>
+        <option value="W">W</option>
+        <option value="X">X</option>
+        <option value="Y">Y</option>
+        <option value="Z">Z</option>
+      </select>
+    </div>
+
+    <div class="s-col-6 col--flex-column s-sm-only grid-view">
+      <h6 class="staff-directory-options">View as:</h6>
+      <div class="s-row">
+        <div class="s-col-12 col--justify-content-space-around grid-images">
+          <img class="grid-img" src="grid1.svg" alt="Photo Grid" />
+          <img class="grid-img" src="grid2.svg" alt="Basic Grid" />
+        </div>
+      </div>
+    </div>
+    <div class="s-col-6 col--flex-column s-sm-only grid-view">
+      <h6 class="staff-directory-options">Jump to:</h6>
       <select class="staff-sort__options">
         <option value="A">A</option>
         <option value="B">B</option>
@@ -79,26 +120,48 @@
     </div>
   </div>
 
+  <!-- Sinlge with Image  -->
+
   <div class="s-row single-staff">
     <div class="s-col-2 col--flex-column">
       <img src="staff.png" alt="staff-title" />
+      <div class="s-row"></div>
     </div>
     <div class="s-col-10 col--flex-column">
-      <h3>Last Name, First Name</h3>
+      <h3 class="staff-name"><span class="staff-name__last">Last Name</span>, First Name</h3>
       <div class="s-row">
         <div class="s-col-12 col--flex-column staff-info">
           <p>Address line 1</p>
           <p>Address line 2</p>
-          <p><span>H</span> Phone 1</p>
-          <p><span>C</span>Phone 2</p>
+          <p><span><strong>H</strong></span> Phone 1</p>
+          <p><span><strong>C</strong></span>Phone 2</p>
           <p>Email</p>
-          <p><span>D</span> 2000 (date)</p>
+          <p><span><strong>D</strong></span> 2000 (date)</p>
           <p>President Elect</p>
           <p><span>&#9733;</span> 2000 (date)</p>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- End Sinlge with Image  -->
+
+  <!-- Sinlge without Image  -->
+
+  <div class="s-row single-staff">
+    <div class="s-col-12 col--flex-column">
+      <div class="s-row">
+        <div class="s-col-12 col--flex-column staff-info staff-info--3-col">
+          <p class="staff-name"><span class="staff-name__last">Last Name</span>, First Name</p>
+          <p><span><strong>C</strong></span>Phone 2</p>
+          <p>Email@email.com</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Sinlge without Image  -->
+
 </section>
 
 </body>
