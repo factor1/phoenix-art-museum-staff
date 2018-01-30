@@ -348,6 +348,14 @@
     width: 100%;
   }
 
+  .staff-container .s-col-2 {
+    flex-basis: 30%;
+  }
+
+  .staff-container .s-col-10 {
+    flex-basis: 70%;
+  }
+
   .grid-images {
     justify-content: flex-start;
   }
