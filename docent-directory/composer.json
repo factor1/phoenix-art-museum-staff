@@ -1,0 +1,37 @@
+{
+    "name": "factor1/docent-directory",
+    "description": "Display Docent Directory.",
+    "version": "1.0.0",
+    "type": "library",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Carlos Noguera",
+            "email": "carlos.noguera@email.com",
+            "homepage": "http://carlosnoguera.me/"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories":[
+        {
+            "type":"composer",
+            "url":"https://wpackagist.org"
+        }
+    ],
+    "require": {
+        "league/plates": "^3.3",
+        "inouet/file-cache": "*",
+        "wpackagist-plugin/advanced-custom-fields": "*"
+    },
+    "autoload": {
+	    "psr-4": {
+			"Factor1\\": "src/"
+		}
+    },
+    "extra": {
+    	"installer-paths": {
+        	"plugins/{$name}/": ["type:wordpress-plugin"]
+    	}
+	}
+}

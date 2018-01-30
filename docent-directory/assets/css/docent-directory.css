@@ -1,0 +1,102 @@
+/*
+ * General Styles
+ */
+
+#theme-my-login {}
+	#theme-my-login label.selected {}
+		#theme-my-login label input[type="checkbox"] {
+			margin-right: 4px !important;
+		}
+	#theme-my-login .acf-input {}
+		#theme-my-login .acf-input input[type="text"],
+		#theme-my-login .acf-input input[type="number"] {
+			border: 1px solid #bbb;
+		}
+		#theme-my-login .acf-input input::-webkit-outer-spin-button,
+		#theme-my-login .acf-input input::-webkit-inner-spin-button {
+			/* display: none; <- Crashes Chrome on hover */
+			-webkit-appearance: none;
+			margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+		}
+		#theme-my-login .acf-input input[type="number"] {
+			-moz-appearance: textfield;
+		}
+		#theme-my-login .acf-input .description {
+			font-size: 10px;
+			line-height: 1em;
+		}
+	#theme-my-login .acf-field-group {}
+		#theme-my-login .acf-field-group[data-name="years_of_office"] {}
+			#theme-my-login .acf-field-group[data-name="years_of_office"] .acf-fields.-border,
+			#theme-my-login .acf-field-group[data-name="years_of_office"] .acf-fields .acf-field {
+				border: none;
+			}
+			#theme-my-login .acf-field-group[data-name="years_of_office"] .acf-field-dynamic-year-select {
+				padding-top: 0;
+			}
+	#theme-my-login .acf-field-address {}
+		#theme-my-login .acf-field-address ul {
+			padding-bottom: 8px;
+			padding-left: 0;
+			list-style: none;
+		}
+			#theme-my-login .acf-field-address ul li {}
+				#theme-my-login .acf-field-address ul li label {
+					font-weight: 700;
+				}
+	#theme-my-login .acf-field-phonenumber {}
+		#theme-my-login .acf-field-phonenumber .form-table {
+			border: none;
+		}
+			#theme-my-login .acf-field-phonenumber .form-table tr {}
+				#theme-my-login .acf-field-phonenumber .form-table tr td {
+					border-top: none;
+				}
+		#theme-my-login .acf-field-phonenumber .prefix-input,
+		#theme-my-login .acf-field-phonenumber .prefix-input .acf-input-prepend,
+		#theme-my-login .acf-field-phonenumber .prefix-input + .separator,
+		#theme-my-login .acf-field-phonenumber .final-input {
+			display: none;
+		}
+		#theme-my-login .acf-field-phonenumber .separator {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	#theme-my-login .acf-field-checkbox {}
+		#theme-my-login .acf-field-checkbox[data-name="tour_types"] {}
+  			#theme-my-login .acf-field-checkbox[data-name="tour_types"] .acf-add-checkbox {
+				position: absolute;
+				visibility: hidden;
+			}
+			#theme-my-login .acf-field-checkbox[data-name="tour_types"] .acf-add-checkbox:before {
+				content: 'Add another Tour Type';
+				visibility: visible;
+			}
+
+/*
+ * Divi Overrides
+ */
+
+ /* Profile */
+
+ #theme-my-login {}
+ 	#theme-my-login .tml-display-name-wrap {
+	 	display: none;
+ 	}
+ 	#theme-my-login .tml-submit-wrap {
+	 	text-align: right;
+ 	}
+ 		#theme-my-login .tml-submit-wrap input {}
+ 		#theme-my-login .tml-submit-wrap input[type="submit"] {
+	 		background: #ddd;
+	 		margin: 0;
+	 		padding: 0.715em;
+	 		width: auto;
+	 		font-size: 14px;
+	 		color: #666;
+	 		border: 1px solid #ddd;
+	 		border-radius: 3px;
+ 		}
+ 		#theme-my-login .tml-submit-wrap input[type="submit"]:hover {
+	 		cursor: pointer;
+ 		}
