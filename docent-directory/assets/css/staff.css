@@ -209,6 +209,7 @@
   border-radius: 5px;
   border: 1px solid #dddddd;
   -webkit-appearance: none;
+     -moz-appearance: none;
           appearance: none;
   background-color: transparent;
   font: 700 12px/14px 'Fira Sans', sans-serif;
@@ -231,6 +232,7 @@
   position: absolute;
   right: 0;
   top: 0;
+  height: 100%;
   padding: 10px;
   border-radius: 0 5px 5px 0;
   border: 1px solid #dddddd;
@@ -239,8 +241,21 @@
   font: 700 12px/14px 'Fira Sans', sans-serif;
 }
 
+.safari .search-field {
+  height: 36px;
+}
+
+.safari .search-submit,
 .safari .select-submit {
-  top: -2px;
+  right: -2px;
+}
+
+.ie11 .search-submit {
+  height: auto;
+}
+
+.ie11 .select-submit {
+  min-height: 37px;
 }
 
 .search-submit:hover {
@@ -282,6 +297,7 @@
 
 .staff-sort__options {
   -webkit-appearance: none;
+     -moz-appearance: none;
           appearance: none;
   min-width: 150px;
   padding: 10px;
