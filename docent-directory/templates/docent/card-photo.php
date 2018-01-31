@@ -1,34 +1,40 @@
 <?php // Docent Designation Letters
 switch ($docent->docent_designation) {
 	case 'Docent':
-		$letter = 'D';
+		$letter_code = 'D';
+		$designation = $docent->docent_designation;
 		break;
 	case 'Senior Docent':
-		$letter = 'SD';
+		$letter_code = 'SD';
+		$designation = $docent->docent_designation;
 		break;
 	case 'Master Docent':
-		$letter = 'M';
+		$letter_code = 'M';
+		$designation = $docent->docent_designation;
 		break;
 	case 'Master Emeritus':
-		$letter = 'ME';
+		$letter_code = 'ME';
+		$designation = $docent->docent_designation;
 		break;
 	case 'Apprentice':
-		$letter = 'A';
+		$letter_code = 'A';
+		$designation = $docent->docent_designation;
 		break;
 	case 'Sustaining':
-		$letter = 'S';
+		$letter_code = 'S';
+		$designation = $docent->docent_designation;
 		break;
 	case 'Honorary':
-		$letter = 'H';
+		$letter_code = 'H';
+		$designation = $docent->docent_designation;
 		break;
 	case 'Inactive':
-		$letter = 'I';
-		break;
-	case 'Staff':
-		$letter = 'ST';
+		$letter_code = 'I';
+		$designation = $docent->docent_designation;
 		break;
 	default:
-		$letter = '';
+		$letter_code = 'ST';
+		$designation = 'Staff';
 } ?>
 
 <div class="s-row single-staff">
@@ -91,8 +97,12 @@ switch ($docent->docent_designation) {
 			</div>
 			<div class="s-col-6 col--flex-column staff-info">
 				<p class="w3-tooltip">
-					<span><strong><?php echo $letter; ?></strong></span> <?php echo $docent->class_year; ?>
-					<span class="w3-text"><span class="arrow bottom right"></span><?php echo $docent->docent_designation; ?></span>
+					<span><strong><?php echo $letter_code; ?></strong></span>
+					<span class="w3-text"><span class="arrow bottom right"></span><?php echo $designation; ?></span>
+				</p>
+				<p class="w3-tooltip">
+					<?php echo $docent->class_year; ?>
+					<span class="w3-text"><span class="arrow bottom right"></span>Class Year</span>
 				</p>
 				<?php if(!empty($docent->past_president)): ?>
 					<p>
@@ -100,12 +110,15 @@ switch ($docent->docent_designation) {
 					</p>
 					<p class="w3-tooltip">
 						<span>&#9733;</span>
+						<span class="w3-text"><span class="arrow bottom right"></span>Past President</span>
+					</p>
+					<p class="w3-tooltip">
 						<?php echo $docent->years_of_office_years_of_office_start; ?>
 						<?php if(!empty($docent->years_of_office_years_of_office_end)): ?>
 							-
 							<?php echo $docent->years_of_office_years_of_office_end; ?>
 						<?php endif; ?>
-						<span class="w3-text"><span class="arrow bottom right"></span>Past President</span>
+						<span class="w3-text"><span class="arrow bottom right"></span>Years of Service</span>
 					</p>
 				<?php endif; ?>
 			</div>
