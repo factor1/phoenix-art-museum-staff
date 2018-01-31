@@ -370,6 +370,11 @@
     color: #005cb9;
     font: 700 12px/14px 'Fira Sans', sans-serif;
   }
+
+  /* Jump To */
+  .staff-sort__options {
+    text-align-last: left;
+  }
 }
 
 /************************ Results Break ************************/
