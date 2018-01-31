@@ -370,6 +370,11 @@
     color: #005cb9;
     font: 700 12px/14px 'Fira Sans', sans-serif;
   }
+
+  /* Jump To */
+  .staff-sort__options {
+    text-align-last: left;
+  }
 }
 
 /************************ Results Break ************************/
@@ -433,6 +438,8 @@
 
 .w3-tooltip {
   position: relative;
+  display: inline-block;
+  padding-bottom: 0;
 }
 
 .w3-tooltip:hover span {
@@ -449,6 +456,7 @@
   border: 1px solid #c8c8c8;
   border-radius: 5px;
   background-color: #f0f0f0;
+  white-space: nowrap;
 }
 
 .w3-text .arrow {
