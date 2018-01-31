@@ -1,3 +1,36 @@
+<?php // Docent Designation Letters
+switch ($docent->docent_designation) {
+	case 'Docent':
+		$letter = 'D';
+		break;
+	case 'Senior Docent':
+		$letter = 'SD';
+		break;
+	case 'Master Docent':
+		$letter = 'M';
+		break;
+	case 'Master Emeritus':
+		$letter = 'ME';
+		break;
+	case 'Apprentice':
+		$letter = 'A';
+		break;
+	case 'Sustaining':
+		$letter = 'S';
+		break;
+	case 'Honorary':
+		$letter = 'H';
+		break;
+	case 'Inactive':
+		$letter = 'I';
+		break;
+	case 'Staff':
+		$letter = 'ST';
+		break;
+	default:
+		$letter = '';
+} ?>
+
 <div class="s-row single-staff">
 	<div class="s-col-2 col--flex-column">
 		<?php if(!empty($docent->photo)): ?>
@@ -58,7 +91,7 @@
 			</div>
 			<div class="s-col-6 col--flex-column staff-info">
 				<p class="w3-tooltip">
-					<span><strong>M</strong></span> <?php echo $docent->class_year; ?>
+					<span><strong><?php echo $letter; ?></strong></span> <?php echo $docent->class_year; ?>
 					<span class="w3-text"><span class="arrow bottom right"></span><?php echo $docent->docent_designation; ?></span>
 				</p>
 				<?php if(!empty($docent->past_president)): ?>
