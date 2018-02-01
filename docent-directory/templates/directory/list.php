@@ -21,7 +21,7 @@
 			</div>
 			<?php foreach($list as $docent): ?>
 				<?php if($show_photo_card): ?>
-					<?php $this->insert('docent/card-photo', array('docent' => $docent)); ?>
+					<?php $this->insert('docent/card-photo', array('docent' => $docent, 'photo_size' => $photo_size)); ?>
 				<?php else: ?>
 					<?php $this->insert('docent/card-basic', array('docent' => $docent)); ?>
 				<?php endif; ?>
@@ -30,7 +30,7 @@
 	<?php else: ?>
 		<?php foreach($docents as $docent): ?>
 			<?php if($show_photo_card): ?>
-				<?php $this->insert('docent/card-photo', array('docent' => $docent)); ?>
+				<?php $this->insert('docent/card-photo', array('docent' => $docent, 'photo_size' => $photo_size)); ?>
 			<?php else: ?>
 				<?php $this->insert('docent/card-basic', array('docent' => $docent)); ?>
 			<?php endif; ?>

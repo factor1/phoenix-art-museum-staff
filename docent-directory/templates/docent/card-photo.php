@@ -1,7 +1,7 @@
 <div class="s-row single-staff">
 	<div class="s-col-2 col--flex-column">
 		<?php if(!empty($docent->photo)): ?>
-			<?php echo wp_get_attachment_image($docent->photo); ?>
+			<?php echo wp_get_attachment_image($docent->photo, $photo_size); ?>
 		<?php elseif(false): ?>
 			<img src="<?php echo get_avatar_url($docent); ?>" alt="staff-title" class="staff-img" />
 		<?php else: ?>

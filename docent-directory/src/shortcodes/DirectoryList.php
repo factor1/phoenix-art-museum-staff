@@ -11,6 +11,7 @@ class DirectoryList extends \Factor1\Shortcode {
 		'show_alphabet_index' => true,
 		'separate_alphabet_pages' => true,
 		'show_letter_headers' => true,
+		'photo_size' => 'thumbnail',
 		'limit' => -1,
 	);
 	protected $designations = array(
@@ -32,6 +33,7 @@ class DirectoryList extends \Factor1\Shortcode {
 			'separate_alphabet_pages' => $attributes['separate_alphabet_pages'],
 			'show_letter_headers' => $attributes['show_letter_headers'],
 			'show_photo_card' => (empty($query_vars['docent-display']) || ($query_vars['docent-display'] == 'grid')),
+			'photo_size' => $attributes['photo_size'],
 			'is_admin' => is_admin(),
 			'links' => array(),
 			'docents' => array(),
