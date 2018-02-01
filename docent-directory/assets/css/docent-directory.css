@@ -3,6 +3,9 @@
  */
 
 #theme-my-login {}
+	#theme-my-login table {
+		border: none;
+	}
 	#theme-my-login label.selected {}
 		#theme-my-login label input[type="checkbox"] {
 			margin-right: 4px !important;
@@ -25,8 +28,23 @@
 			font-size: 10px;
 			line-height: 1em;
 		}
+	#theme-my-login .acf-field-message.acf-field-5a72896b2b18e {
+		bottom: -15px;
+	}
+		#theme-my-login .acf-field-message.acf-field-5a72896b2b18e .acf-label {
+			margin-left: -15px;
+			padding: 0;
+			width: 100%;
+			border: none;
+		}
+		#theme-my-login .acf-field-message.acf-field-5a72896b2b18e .acf-input {
+			display: none;
+			border: none;
+		}
 	#theme-my-login .acf-field-group {}
-		#theme-my-login .acf-field-group[data-name="years_of_office"] {}
+		#theme-my-login .acf-field-group[data-name="years_of_office"] {
+			display: none;
+		}
 			#theme-my-login .acf-field-group[data-name="years_of_office"] .acf-fields.-border,
 			#theme-my-login .acf-field-group[data-name="years_of_office"] .acf-fields .acf-field {
 				border: none;
@@ -34,6 +52,46 @@
 			#theme-my-login .acf-field-group[data-name="years_of_office"] .acf-field-dynamic-year-select {
 				padding-top: 0;
 			}
+		#theme-my-login .acf-field-group[data-name="primary_phone_group"],
+		#theme-my-login .acf-field-group[data-name="alternate1_phone_group"],
+		#theme-my-login .acf-field-group[data-name="alternate2_phone_group"] {}
+			#theme-my-login .acf-field-group[data-name="primary_phone_group"] .acf-fields.-border,
+			#theme-my-login .acf-field-group[data-name="alternate1_phone_group"] .acf-fields.-border,
+			#theme-my-login .acf-field-group[data-name="alternate2_phone_group"] .acf-fields.-border {
+				border: none;
+			}
+			#theme-my-login .acf-field-group[data-name="primary_phone_group"] .acf-field-phone-number,
+			#theme-my-login .acf-field-group[data-name="alternate1_phone_group"] .acf-field-phone-number,
+			#theme-my-login .acf-field-group[data-name="alternate2_phone_group"] .acf-field-phone-number {
+				border: none;
+			}
+				#theme-my-login .acf-field-phone-number,
+				#theme-my-login .acf-field-group[data-name="primary_phone_group"] .acf-field-select,
+				#theme-my-login .acf-field-group[data-name="alternate1_phone_group"] .acf-field-select,
+				#theme-my-login .acf-field-group[data-name="alternate2_phone_group"] .acf-field-select {
+					padding-left: inherit;
+					width: 50%;
+					float: left;
+					border: none;
+				}
+					#theme-my-login .acf-field-phone-number .acf-label,
+					#theme-my-login .acf-field-phone-number::before,
+					#theme-my-login .acf-field-group[data-name="primary_phone_group"] .acf-field-select .acf-label,
+					#theme-my-login .acf-field-group[data-name="alternate1_phone_group"] .acf-field-select .acf-label,
+					#theme-my-login .acf-field-group[data-name="alternate2_phone_group"] .acf-field-select .acf-label,
+					#theme-my-login .acf-field-group[data-name="primary_phone_group"] .acf-field-select::before,
+					#theme-my-login .acf-field-group[data-name="alternate1_phone_group"] .acf-field-select::before,
+					#theme-my-login .acf-field-group[data-name="alternate2_phone_group"] .acf-field-select::before {
+						display: none;
+						border: none;
+					}
+
+				#theme-my-login input.acf-phone-number[type="tel"] {
+					padding: 3px 5px;
+					font-size: 14px;
+					line-height: 1.4;
+				}
+
 	#theme-my-login .acf-field-address {}
 		#theme-my-login .acf-field-address ul {
 			padding-bottom: 8px;
@@ -80,7 +138,9 @@
  /* Profile */
 
  #theme-my-login {}
- 	#theme-my-login .tml-display-name-wrap {
+ 	#theme-my-login .tml-display-name-wrap,
+ 	#theme-my-login .tml-user-url-wrap,
+ 	#theme-my-login .tml-user-description-wrap {
 	 	display: none;
  	}
  	#theme-my-login .tml-submit-wrap {

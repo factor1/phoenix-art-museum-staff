@@ -1,42 +1,3 @@
-<?php // Docent Designation Letters
-switch ($docent->docent_designation) {
-	case 'Docent':
-		$letter_code = 'D';
-		$designation = $docent->docent_designation;
-		break;
-	case 'Senior Docent':
-		$letter_code = 'SD';
-		$designation = $docent->docent_designation;
-		break;
-	case 'Master Docent':
-		$letter_code = 'M';
-		$designation = $docent->docent_designation;
-		break;
-	case 'Master Emeritus':
-		$letter_code = 'ME';
-		$designation = $docent->docent_designation;
-		break;
-	case 'Apprentice':
-		$letter_code = 'A';
-		$designation = $docent->docent_designation;
-		break;
-	case 'Sustaining':
-		$letter_code = 'S';
-		$designation = $docent->docent_designation;
-		break;
-	case 'Honorary':
-		$letter_code = 'H';
-		$designation = $docent->docent_designation;
-		break;
-	case 'Inactive':
-		$letter_code = 'I';
-		$designation = $docent->docent_designation;
-		break;
-	default:
-		$letter_code = 'ST';
-		$designation = 'Staff';
-} ?>
-
 <div class="s-row single-staff">
 	<div class="s-col-2 col--flex-column">
 		<?php if(!empty($docent->photo)): ?>
@@ -49,7 +10,13 @@ switch ($docent->docent_designation) {
 	</div>
 	<div class="s-col-10 col--flex-column">
 		<h3 class="staff-name">
-			<span class="staff-name__last"><?php echo $docent->last_name; ?></span>, <?php echo $docent->first_name; ?>
+			<span class="staff-name__last"><?php echo $docent->last_name; ?></span>,
+			<?php echo $docent->first_name; ?>
+			<?php if(!empty($docent->address)): ?>
+				<span class="staff-spouse_partner">
+					<?php echo $docent->spouse_partner; ?>
+				</span>
+			<?php endif; ?>
 		</h3>
 		<div class="s-row">
 			<div class="s-col-6 col--flex-column staff-info">
@@ -60,56 +27,60 @@ switch ($docent->docent_designation) {
 							<br>
 							<?php echo $docent->address['street2']; ?>
 						<?php endif; ?>
-					</p>
-					<p>
+						<br>
 						<?php echo $docent->address['city']; ?>,
 						<?php echo $docent->address['state']; ?>
 						<?php echo $docent->address['zip']; ?>
 					</p>
 				<?php endif; ?>
-				<?php if(!empty($docent->phone_home)): ?>
-					<?php $phone_home = unserialize($docent->phone_home); ?>
-					<p>
-						<span><strong>H</strong></span>
-						(<?php echo $phone_home['area_code']; ?>)
-						<?php echo $phone_home['phone_number']; ?>-<?php echo $phone_home['direct_dialing']; ?>
-					</p>
-				<?php endif; ?>
-				<?php if(!empty($docent->phone_mobile)): ?>
-					<?php $phone_mobile = unserialize($docent->phone_mobile); ?>
-					<p>
-						<span><strong>C</strong></span>
-						(<?php echo $phone_mobile['area_code']; ?>)
-						<?php echo $phone_mobile['phone_number']; ?>-<?php echo $phone_mobile['direct_dialing']; ?>
-					</p>
-				<?php endif; ?>
-				<?php if(!empty($docent->phone_work)): ?>
-					<?php $phone_work = unserialize($docent->phone_work); ?>
-					<p>
-						<span><strong>W</strong></span>
-						(<?php echo $phone_work['area_code']; ?>)
-						<?php echo $phone_work['phone_number']; ?>-<?php echo $phone_work['direct_dialing']; ?>
-					</p>
-				<?php endif; ?>
-				<p>
+				<p class="staff-phone">
+					<?php if(!empty($docent->primary_phone_group_primary_phone)): ?>
+						<span>
+							<strong><?php echo substr($docent->primary_phone_group_primary_phone_type, 0, 1); ?></strong>
+						</span>
+						<?php echo $docent->primary_phone_group_primary_phone; ?>
+						<br>
+					<?php endif; ?>
+					<?php if(!empty($docent->alternate1_phone_group_alternate1_phone)): ?>
+						<span>
+							<strong><?php echo substr($docent->alternate1_phone_group_alternate1_phone_type, 0, 1); ?></strong>
+						</span>
+						<?php echo $docent->alternate1_phone_group_alternate1_phone; ?>
+						<br>
+					<?php endif; ?>
+					<?php if(!empty($docent->alternate2_phone_group_alternate2_phone)): ?>
+						<span>
+							<strong><?php echo substr($docent->alternate2_phone_group_alternate2_phone_type, 0, 1); ?></strong>
+						</span>
+						<?php echo $docent->alternate2_phone_group_alternate2_phone; ?>
+					<?php endif; ?>
+				</p>
+				<p class="staff-email">
 					<?php echo $docent->user_email; ?>
 				</p>
 			</div>
 			<div class="s-col-6 col--flex-column staff-info">
 				<p class="w3-tooltip">
-					<span><strong><?php echo $letter_code; ?></strong></span>
-					<span class="w3-text"><span class="arrow bottom right"></span><?php echo $designation; ?></span>
+					<span class="staff-designation">
+						<strong>
+							<?php echo $docent->docent_designation_abbreviation; ?>
+						</strong>
+					</span>
+					<span class="w3-text">
+						<span class="arrow bottom right"></span>
+						<?php echo $docent->docent_designation; ?>
+					</span>
 				</p>
 				<p class="w3-tooltip">
 					<?php echo $docent->class_year; ?>
-					<span class="w3-text"><span class="arrow bottom right"></span>Class Year</span>
+					<span class="w3-text">
+						<span class="arrow bottom right"></span>
+						Class Year
+					</span>
 				</p>
 				<?php if(!empty($docent->past_president)): ?>
-					<p>
-						President Elect
-					</p>
 					<p class="w3-tooltip">
-						<span>&#9733;</span>
+						<span class="staff-president">&#9733;</span>
 						<span class="w3-text"><span class="arrow bottom right"></span>Past President</span>
 					</p>
 					<p class="w3-tooltip">

@@ -419,7 +419,6 @@
   border-bottom: 1px solid #f0f0f0;
 }
 
-
 .staff-img {
   width: 100%;
   max-width: 200px;
@@ -427,12 +426,19 @@
 }
 
 .staff-name {
+  margin-bottom: 0;
   color: #666666;
   font: 700 14.5px/17.5px 'Fira Sans', sans-serif;
 }
 
 .staff-name__last {
   text-transform: uppercase;
+}
+
+.staff-spouse_partner {
+  display: block;
+  color: #666666;
+  font: 700 12px/14px 'Fira Sans', sans-serif;
 }
 
 .staff-info {
@@ -450,6 +456,23 @@
 
 .staff-info p {
   margin-top: 0;
+}
+
+.staff-phone {
+  margin-bottom: 0;
+}
+
+.staff-email {
+  margin-top: 10px !important;
+}
+
+.staff-designation {
+  text-transform: uppercase;
+  color: #005cb9;
+}
+
+.staff-president {
+  color: #fd9938;
 }
 
 .w3-tooltip {

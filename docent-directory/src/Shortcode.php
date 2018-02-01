@@ -74,4 +74,16 @@ class Shortcode {
 		return $this->shortcode($merged_attributes, $query_vars);
 	}
 
+	public function _query_merge(array $vars = array()) {
+		if(!empty($vars)) {
+			$current_uri_array = parse_url($_SERVER['REQUEST_URI']);
+			$current_query_vars = !empty(parse_str($current_uri_array['query'])) ?
+				parse_str($current_uri_array['query']) : array();
+
+			return '?' . http_build_query(array_merge($current_query_vars, $vars));
+		}
+
+		return null;
+	}
+
 }

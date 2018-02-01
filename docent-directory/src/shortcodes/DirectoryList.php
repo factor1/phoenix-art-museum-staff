@@ -13,6 +13,17 @@ class DirectoryList extends \Factor1\Shortcode {
 		'show_letter_headers' => true,
 		'limit' => -1,
 	);
+	protected $designations = array(
+		'Docent' => 'D',
+		'Senior Docent' => 'SD' ,
+		'Master Docent' => 'M' ,
+		'Master Emeritus' => 'ME',
+		'Apprentice' => 'A',
+		'Sustaining' => 'S',
+		'Honorary' => 'H',
+		'Inactive' => 'I',
+		'Staff' => 'ST',
+	);
 
 	public function shortcode($attributes = array(), $query_vars = array()) {
 		$template = 'directory/list';
@@ -20,14 +31,20 @@ class DirectoryList extends \Factor1\Shortcode {
 			'show_alphabet_index' => $attributes['show_alphabet_index'],
 			'separate_alphabet_pages' => $attributes['separate_alphabet_pages'],
 			'show_letter_headers' => $attributes['show_letter_headers'],
-			'show_photo_card' => true, //!empty($query_vars['docent-photo']),
+			'show_photo_card' => (empty($query_vars['docent-display']) || ($query_vars['docent-display'] == 'grid')),
 			'is_admin' => is_admin(),
-			'docents' => [],
+			'links' => array(),
+			'docents' => array(),
 		);
+
+		// URI and Links
+		$data['links']['grid'] = $this->_query_merge(array('docent-display' => 'grid'));
+		$data['links']['list'] = $this->_query_merge(array('docent-display' => 'list'));
+		$data['links']['jump'] = $this->_query_merge(array('docent-letter' => ''));
 
 		// TO DO: Move this into Docent Model / WPModel
 		$args = [
-	    	'role__in' => ['docent'],
+	    	'role__in' => ['administrator', 'docent'],
 		    'order' => 'ASC',
 		    'orderby' => 'meta_value',
 		    'meta_key' => 'last_name',
@@ -55,18 +72,19 @@ class DirectoryList extends \Factor1\Shortcode {
 		$docent_query = new \WP_User_Query($args);
 		if(!empty($docent_query->results))
 		{
-			if($attributes['show_letter_headers'])
+			foreach($docent_query->results as $docent)
 			{
-				foreach($docent_query->results as $docent)
+				$docent->docent_designation_abbreviation = $this->designations[$docent->docent_designation];
+
+				if($attributes['show_letter_headers'])
 				{
-					$data['docents'][substr($docent->last_name, 0 , 1)][] = $docent;
+					$data['docents'][substr($docent->last_name, 0 , 1)][$docent->ID] = $docent;
+				}
+				else
+				{
+					$data['docents'][$docent->ID] = $docent;
 				}
 			}
-			else
-			{
-				$data['docents'] = $docent_query->results;
-			}
-
 		}
 
 		return $this->render($template, $data);

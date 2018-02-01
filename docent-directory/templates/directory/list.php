@@ -5,7 +5,8 @@
 			array(
 				'show_alphabet_index' => $show_alphabet_index,
 				'separate_alphabet_pages' => $separate_alphabet_pages,
-			)
+				'links' => $links,
+ 			)
 		);
 	?>
 

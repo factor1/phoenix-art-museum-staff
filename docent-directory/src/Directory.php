@@ -47,7 +47,7 @@ class Directory {
 		'docent-year',
 		'docent-status',
 		'docent-tour',
-		'docent-photo',
+		'docent-display',
 	);
 	public static $rewrite_endpoints = array(
 		'docent-letter',
@@ -128,6 +128,7 @@ class Directory {
 		wp_enqueue_style('docent-directory-staff', Factor1_ASSET_URL . '/css/staff.css', array(), '1.0');
 
 		// JS
+		wp_enqueue_script('docent-directory', Factor1_ASSET_URL . '/js/docent-directory.js', array('jquery'), '1.0');
 		wp_enqueue_script('docent-directory-staff', Factor1_ASSET_URL . '/js/staff.js', array(), '1.0');
 	}
 
@@ -185,7 +186,7 @@ class Directory {
 
 		// 6. Include additional ACF plugins
 		include_once(Factor1_PLUGIN_PATH . '/acf-dynamic-year-select-field/acf-dynamic_year_select.php');
-		include_once(Factor1_PLUGIN_PATH . '/acf-field-phonenumber-factor1/acf-phonenumber.php');
+		include_once(Factor1_PLUGIN_PATH . '/acf-phone-number/acf-phone-number.php');
 		include_once(Factor1_PLUGIN_PATH . '/acf-field-address/acf-address.php');
 	}
 
