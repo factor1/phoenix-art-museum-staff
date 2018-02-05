@@ -23,6 +23,7 @@ class DirectoryList extends \Factor1\Shortcode {
 		'Sustaining' => 'S',
 		'Honorary' => 'H',
 		'Inactive' => 'I',
+		'Trainee' => 'T',
 		'Staff' => 'ST',
 	);
 
