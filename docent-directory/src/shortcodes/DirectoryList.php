@@ -43,7 +43,7 @@ class DirectoryList extends \Factor1\Shortcode {
 		);
 
 		// Actions
-		add_action('pre_user_query', array($this, 'user_meta_OR_search'));
+		// add_action('pre_user_query', array($this, 'user_meta_OR_search'));
 
 		// Add search to query data if it exists
 		if(!empty($_REQUEST['search']))
