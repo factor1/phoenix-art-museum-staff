@@ -4,8 +4,13 @@
 		data-mode="<?php echo ($separate_alphabet_pages) ? 'separate' : 'single'; ?>"
 		data-uri="<?php echo $jump_link; ?>"
 	>
+		<option value=""
+			<?php if(empty($query['docent-letter'])): ?>selected="selected"<?php endif; ?>>All</option>
 		<?php foreach(range('A', 'Z') as $letter): ?>
-			<option value="<?php echo $letter; ?>"><?php echo $letter; ?></option>
+			<option value="<?php echo $letter; ?>"
+				<?php if(!empty($query['docent-letter']) && ($letter == $query['docent-letter'])): ?>
+					selected="selected"
+				<?php endif; ?>><?php echo $letter; ?></option>
 		<?php endforeach; ?>
 	</select>
 	<noscript>

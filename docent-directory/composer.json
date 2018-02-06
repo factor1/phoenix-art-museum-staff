@@ -22,7 +22,8 @@
     "require": {
         "league/plates": "^3.3",
         "inouet/file-cache": "*",
-        "wpackagist-plugin/advanced-custom-fields": "*"
+        "wpackagist-plugin/advanced-custom-fields": "*",
+        "rappasoft/laravel-helpers": "^1.0"
     },
     "autoload": {
 	    "psr-4": {

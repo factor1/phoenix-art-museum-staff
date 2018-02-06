@@ -33,12 +33,22 @@ acf_add_local_field_group(array(
 				'operator' => '==',
 				'value' => 'administrator',
 			),
+			array(
+				'param' => 'user_form',
+				'operator' => '==',
+				'value' => 'edit',
+			),
 		),
 		array(
 			array(
 				'param' => 'current_user_role',
 				'operator' => '==',
 				'value' => 'docent',
+			),
+			array(
+				'param' => 'user_form',
+				'operator' => '==',
+				'value' => 'edit',
 			),
 		),
 	),
@@ -258,6 +268,11 @@ acf_add_local_field_group(array(
 				'param' => 'current_user_role',
 				'operator' => '==',
 				'value' => 'administrator',
+			),
+			array(
+				'param' => 'user_form',
+				'operator' => '==',
+				'value' => 'edit',
 			),
 		),
 	),
@@ -552,12 +567,22 @@ acf_add_local_field_group(array(
 				'operator' => '==',
 				'value' => 'docent',
 			),
+			array(
+				'param' => 'user_form',
+				'operator' => '==',
+				'value' => 'edit',
+			),
 		),
 		array(
 			array(
 				'param' => 'current_user_role',
 				'operator' => '==',
 				'value' => 'administrator',
+			),
+			array(
+				'param' => 'user_form',
+				'operator' => '==',
+				'value' => 'edit',
 			),
 		),
 	),

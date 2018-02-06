@@ -45,7 +45,7 @@ class Directory {
 		'docent-letter',
 		'docent-name',
 		'docent-year',
-		'docent-status',
+		'docent-designation',
 		'docent-tour',
 		'docent-display',
 	);

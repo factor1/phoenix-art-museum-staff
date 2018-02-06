@@ -56,7 +56,7 @@
 					<?php endif; ?>
 				</p>
 				<p class="staff-email">
-					<?php echo $docent->user_email; ?>
+					<a href="mailto:<?php echo $docent->user_email; ?>"><?php echo $docent->user_email; ?></a>
 				</p>
 			</div>
 			<div class="s-col-6 col--flex-column staff-info">

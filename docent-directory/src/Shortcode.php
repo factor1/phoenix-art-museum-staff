@@ -14,10 +14,17 @@ class Shortcode {
 	protected $cache;
 	protected $cache_id;
 
+	public $query_array = array();
+
 	public function __construct($cache = null) {
 		if(!empty($cache)) {
 			$this->cache = $cache;
 			$this->cache_enabled = true;
+		}
+
+		$current_uri_array = parse_url($_SERVER['REQUEST_URI']);
+		if(!empty($current_uri_array['query'])) {
+			parse_str($current_uri_array['query'], $this->query_array);
 		}
 
 		add_shortcode($this->tag, array($this, '_shortcode_merge'));
@@ -76,11 +83,7 @@ class Shortcode {
 
 	public function _query_merge(array $vars = array()) {
 		if(!empty($vars)) {
-			$current_uri_array = parse_url($_SERVER['REQUEST_URI']);
-			$current_query_vars = !empty(parse_str($current_uri_array['query'])) ?
-				parse_str($current_uri_array['query']) : array();
-
-			return '?' . http_build_query(array_merge($current_query_vars, $vars));
+			return '?' . http_build_query(array_merge($this->query_array, $vars));
 		}
 
 		return null;
