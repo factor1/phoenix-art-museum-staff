@@ -5,7 +5,10 @@
 			<?php foreach(array_except($query, array('search')) as $key => $value): ?>
 				<input type="hidden" name="<?php echo $key; ?>" value="<?php echo $value; ?>">
 			<?php endforeach; ?>
-			<input type="text" class="search-field" name="search">
+			<input type="text"
+				class="search-field"
+				name="search"
+				value="<?php echo !empty($_REQUEST['search']) ? $_REQUEST['search'] : null; ?>">
 			<input type="submit" class="search-submit" value="Search">
 		</form>
 	</div>
@@ -52,6 +55,7 @@
 			    	'separate_alphabet_pages' => $separate_alphabet_pages,
 			    	'jump_link' => $links['jump'],
 			    	'query' => $query,
+			    	'docents' => $docents,
 			    ));
 			?>
 	    </div>
@@ -65,6 +69,7 @@
 			    	'separate_alphabet_pages' => $separate_alphabet_pages,
 			    	'jump_link' => $links['jump'],
 			    	'query' => $query,
+			    	'docents' => $docents,
 			    ));
 			?>
 	    </div>

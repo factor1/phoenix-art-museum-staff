@@ -8,6 +8,7 @@
 				'query' => $query,
 				'links' => $links,
 				'designations' => $designations,
+				'docents' => $docents,
  			)
 		);
 	?>

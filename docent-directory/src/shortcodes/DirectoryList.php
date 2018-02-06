@@ -45,6 +45,12 @@ class DirectoryList extends \Factor1\Shortcode {
 		// Actions
 		add_action('pre_user_query', array($this, 'user_meta_OR_search'));
 
+		// Add search to query data if it exists
+		if(!empty($_REQUEST['search']))
+		{
+			$data['query'] = array_merge($data['query'], array('search' => $_REQUEST['search']));
+		}
+
 		// URI and Links
 		$data['links']['grid'] = $this->_query_merge(array('docent-display' => 'grid'));
 		$data['links']['list'] = $this->_query_merge(array('docent-display' => 'list'));
@@ -66,7 +72,7 @@ class DirectoryList extends \Factor1\Shortcode {
 		// Add search terms
 		if(!empty($_REQUEST['search']))
 		{
-			$args['_meta_or_search'] = '*' . esc_attr($_REQUEST['search']) . '*';
+			// $args['_meta_or_search'] = '*' . esc_attr($_REQUEST['search']) . '*';
 			$args['meta_query'][] = array(
 				'key' => 'first_name',
 				'value' => esc_attr($_REQUEST['search']),
@@ -84,7 +90,7 @@ class DirectoryList extends \Factor1\Shortcode {
 			);
 		}
 
-		if(!empty($query_vars['docent-letter']))
+		if(!empty($query_vars['docent-letter']) && empty($_REQUEST['search']))
 		{
 			$args['meta_query'][] = array(
 				'key' => 'last_name',
@@ -93,7 +99,7 @@ class DirectoryList extends \Factor1\Shortcode {
 			);
 		}
 
-		if(!empty($query_vars['docent-designation']))
+		if(!empty($query_vars['docent-designation']) && empty($_REQUEST['search']))
 		{
 			if($query_vars['docent-designation'] != 'ST')
 			{
@@ -111,6 +117,8 @@ class DirectoryList extends \Factor1\Shortcode {
 		{
 			foreach($docent_query->results as $docent)
 			{
+				$first_letter_last_name = substr($docent->last_name, 0 , 1);
+
 				if(empty($docent->docent_designation))
 				{
 					$docent->docent_designation = 'Staff';
@@ -125,9 +133,29 @@ class DirectoryList extends \Factor1\Shortcode {
 					continue;
 				}
 
+				// Remove users that don't start with docent letter if we're searching AND we have
+				// the $query_vars['docent-letter'] filter
+				if(!empty($_REQUEST['search']) && !empty($query_vars['docent-letter']))
+				{
+					if($query_vars['docent-letter'] != $first_letter_last_name)
+					{
+						continue;
+					}
+				}
+
+				// Remove users that don't have the cirrect docent designation if we're searching
+				// AND we have the $query_vars['docent-designation'] filter
+				if(!empty($_REQUEST['search']) && !empty($query_vars['docent-designation']))
+				{
+					if($query_vars['docent-designation'] != $docent->docent_designation_abbreviation)
+					{
+						continue;
+					}
+				}
+
 				if($attributes['show_letter_headers'])
 				{
-					$data['docents'][substr($docent->last_name, 0 , 1)][$docent->ID] = $docent;
+					$data['docents'][$first_letter_last_name][$docent->ID] = $docent;
 				}
 				else
 				{

@@ -10,7 +10,11 @@
 			<option value="<?php echo $letter; ?>"
 				<?php if(!empty($query['docent-letter']) && ($letter == $query['docent-letter'])): ?>
 					selected="selected"
-				<?php endif; ?>><?php echo $letter; ?></option>
+				<?php endif; ?>
+				<?php if(!array_key_exists($letter, $docents)): ?>
+					disabled="disabled"
+				<?php endif; ?>
+			><?php echo $letter; ?></option>
 		<?php endforeach; ?>
 	</select>
 	<noscript>
