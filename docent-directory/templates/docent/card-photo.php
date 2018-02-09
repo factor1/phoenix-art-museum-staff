@@ -28,7 +28,7 @@
 							<?php echo $docent->address['street2']; ?>
 						<?php endif; ?>
 						<br>
-						<?php echo $docent->address['city']; ?>,
+						<?php echo $docent->address['city']; ?><?php if(!empty($docent->address['state'])) : ?>,<?php endif; ?>
 						<?php echo $docent->address['state']; ?>
 						<?php echo $docent->address['zip']; ?>
 					</p>
