@@ -1,6 +1,6 @@
 <div class="s-row">
 	<div class="s-col-5 col--flex-column">
-		<h6 class="staff-directory-options">Search the Directory:</h6>
+		<h6 class="staff-directory-options">Search Directory by Name or Class Year:</h6>
 		<form action="" class="search-field-wrap">
 			<?php foreach(array_except($query, array('search')) as $key => $value): ?>
 				<input type="hidden" name="<?php echo $key; ?>" value="<?php echo $value; ?>">
