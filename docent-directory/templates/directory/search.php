@@ -52,6 +52,7 @@
 		    <span class="staff-sort__text">Jump to:</span>
 		    <?php
 			    $this->insert('directory/alphabet-index', array(
+				    'filter_alphabet_index' => $filter_alphabet_index,
 			    	'separate_alphabet_pages' => $separate_alphabet_pages,
 			    	'jump_link' => $links['jump'],
 			    	'query' => $query,
@@ -66,6 +67,7 @@
 		    <h6 class="staff-directory-options">Jump to:</h6>
 		    <?php
 			    $this->insert('directory/alphabet-index', array(
+				    'filter_alphabet_index' => $filter_alphabet_index,
 			    	'separate_alphabet_pages' => $separate_alphabet_pages,
 			    	'jump_link' => $links['jump'],
 			    	'query' => $query,

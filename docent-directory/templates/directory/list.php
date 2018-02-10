@@ -4,6 +4,7 @@
 		$this->insert('directory/search',
 			array(
 				'show_alphabet_index' => $show_alphabet_index,
+				'filter_alphabet_index' => $filter_alphabet_index,
 				'separate_alphabet_pages' => $separate_alphabet_pages,
 				'query' => $query,
 				'links' => $links,

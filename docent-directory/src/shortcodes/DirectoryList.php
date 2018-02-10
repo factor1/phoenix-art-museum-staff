@@ -9,9 +9,10 @@ class DirectoryList extends \Factor1\Shortcode {
 	protected $tag = 'docent-directory';
 	protected $defaults = array(
 		'show_alphabet_index' => true,
+		'filter_alphabet_index' => false,
 		'separate_alphabet_pages' => true,
 		'show_letter_headers' => true,
-		'photo_size' => 'thumbnail',
+		'photo_size' => '200x260',
 		'limit' => -1,
 	);
 	public $designations = array(
@@ -20,17 +21,26 @@ class DirectoryList extends \Factor1\Shortcode {
 		'Master Docent' => 'M' ,
 		'Master Emeritus' => 'ME',
 		'Apprentice' => 'A',
+		'Trainee' => 'T',
 		'Sustaining' => 'S',
 		'Honorary' => 'H',
 		'Inactive' => 'I',
-		'Trainee' => 'T',
 		'Staff' => 'ST',
+	);
+	public $staff_designations = array(
+		'Director\'s Office',
+		'Advancement',
+		'Administration',
+		'Security',
+		'Education & Library Staff',
+		'Curatorial',
 	);
 
 	public function shortcode($attributes = array(), $query_vars = array()) {
 		$template = 'directory/list';
 		$data = array(
 			'show_alphabet_index' => $attributes['show_alphabet_index'],
+			'filter_alphabet_index' => $attributes['filter_alphabet_index'],
 			'separate_alphabet_pages' => $attributes['separate_alphabet_pages'],
 			'show_letter_headers' => $attributes['show_letter_headers'],
 			'show_photo_card' => (empty($query_vars['docent-display']) || ($query_vars['docent-display'] == 'grid')),
@@ -122,9 +132,18 @@ class DirectoryList extends \Factor1\Shortcode {
 				if(empty($docent->docent_designation))
 				{
 					$docent->docent_designation = 'Staff';
+					$docent->is_staff = true;
 				}
 
-				$docent->docent_designation_abbreviation = $this->designations[$docent->docent_designation];
+				if(in_array($docent->docent_designation, $this->staff_designations))
+				{
+					$docent->docent_designation_abbreviation = 'ST';
+					$docent->is_staff = true;
+				}
+				else
+				{
+					$docent->docent_designation_abbreviation = $this->designations[$docent->docent_designation];
+				}
 
 				// Skip to next user (without adding it) if we're searching for staff and they are not staff
 				if(!empty($query_vars['docent-designation']) &&

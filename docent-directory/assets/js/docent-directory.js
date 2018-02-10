@@ -1,5 +1,9 @@
 (function($) {
 	$(document).ready(function() {
+		// Get window URL with no query parameters
+		// Reference: https://stackoverflow.com/a/5817566
+		var url = [location.protocol, '//', location.host, location.pathname].join('');
+
 		// Hide Divi content
 		$('h3:contains("About Yourself")').hide();
 		$('.tml-user-description-wrap').parent('.tml-form-table').hide();
@@ -28,7 +32,11 @@
 		// "Jump To" functionality
 		$('select[name="docent-letter"]').on('change', function(e) {
 			var $target = $(e.target);
-			window.location = $target.data('uri') + $target.val();
+			if($target.data('filter')) {
+				window.location = $target.data('uri') + $target.val();
+			} else {
+				window.location = url + '?docent-letter=' + $target.val();
+			}
 		});
 	});
 })(jQuery);

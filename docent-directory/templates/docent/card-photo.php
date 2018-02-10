@@ -71,13 +71,15 @@
 						<?php echo $docent->docent_designation; ?>
 					</span>
 				</p>
-				<p class="w3-tooltip">
-					<?php echo $docent->class_year; ?>
-					<span class="w3-text">
-						<span class="arrow bottom right"></span>
-						Class Year
-					</span>
-				</p>
+				<?php if(!$docent->is_staff): ?>
+					<p class="w3-tooltip">
+						<?php echo $docent->class_year; ?>
+						<span class="w3-text">
+							<span class="arrow bottom right"></span>
+							Class Year
+						</span>
+					</p>
+				<?php endif; ?>
 				<?php if(!empty($docent->past_president)): ?>
 					<p class="w3-tooltip">
 						<span class="staff-president">&#9733;</span>
