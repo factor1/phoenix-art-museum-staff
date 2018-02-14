@@ -12,7 +12,7 @@ class DirectoryList extends \Factor1\Shortcode {
 		'filter_alphabet_index' => false,
 		'separate_alphabet_pages' => true,
 		'show_letter_headers' => true,
-		'photo_size' => '200x260',
+		'photo_size' => 'thumbnail',
 		'limit' => -1,
 	);
 	public $designations = array(
