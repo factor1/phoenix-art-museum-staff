@@ -127,7 +127,7 @@ class DirectoryList extends \Factor1\Shortcode {
 		{
 			foreach($docent_query->results as $docent)
 			{
-				$first_letter_last_name = substr($docent->last_name, 0 , 1);
+				$first_letter_last_name = strtoupper(substr($docent->last_name, 0 , 1));
 
 				if(empty($docent->docent_designation))
 				{
