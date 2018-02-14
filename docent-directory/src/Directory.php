@@ -188,6 +188,9 @@ class Directory {
 		include_once(Factor1_PLUGIN_PATH . '/acf-dynamic-year-select-field/acf-dynamic_year_select.php');
 		include_once(Factor1_PLUGIN_PATH . '/acf-phone-number/acf-phone-number.php');
 		include_once(Factor1_PLUGIN_PATH . '/acf-field-address/acf-address.php');
+
+		// 7. Include misc plugins
+		include_once(Factor1_PLUGIN_PATH . '/regenerate-thumbnails/regenerate-thumbnails.php');
 	}
 
 	protected function _configure_query_vars()
