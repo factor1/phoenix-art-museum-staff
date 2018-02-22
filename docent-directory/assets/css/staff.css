@@ -519,6 +519,24 @@
     left: -7px;
 }
 
+.staff-export {
+  display: inline-block;
+  background: #ddd;
+  margin: 0;
+  padding: 0.715em;
+  font-size: 14px;
+  font-weight: bold;
+  color: #666;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.staff-export:hover {
+  background-color: #9dadb7;
+  border: 1px solid #9dadb7;
+  color: #fff;
+}
+
 @media screen and (max-width:767px) {
   .staff-img {
     max-width: 100px;
