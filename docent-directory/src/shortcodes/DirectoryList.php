@@ -15,6 +15,7 @@ class DirectoryList extends \Factor1\Shortcode {
 		'photo_size' => 'thumbnail',
 		'limit' => -1,
 	);
+	protected $query_args;
 	public $designations = array(
 		'Docent' => 'D',
 		'Senior Docent' => 'SD' ,
@@ -38,14 +39,14 @@ class DirectoryList extends \Factor1\Shortcode {
 
 	public function shortcode($attributes = array(), $query_vars = array()) {
 		$template = 'directory/list';
-		$data = array(
+		$this->data = array(
 			'show_alphabet_index' => $attributes['show_alphabet_index'],
 			'filter_alphabet_index' => $attributes['filter_alphabet_index'],
 			'separate_alphabet_pages' => $attributes['separate_alphabet_pages'],
 			'show_letter_headers' => $attributes['show_letter_headers'],
 			'show_photo_card' => (empty($query_vars['docent-display']) || ($query_vars['docent-display'] == 'grid')),
 			'photo_size' => $attributes['photo_size'],
-			'is_admin' => is_admin(),
+			'is_admin' => current_user_can('administrator'),
 			'query' => array_filter($query_vars),
 			'links' => array(),
 			'designations' => $this->designations,
@@ -58,16 +59,17 @@ class DirectoryList extends \Factor1\Shortcode {
 		// Add search to query data if it exists
 		if(!empty($_REQUEST['search']))
 		{
-			$data['query'] = array_merge($data['query'], array('search' => $_REQUEST['search']));
+			$this->data['query'] = array_merge($this->data['query'], array('search' => $_REQUEST['search']));
 		}
 
 		// URI and Links
-		$data['links']['grid'] = $this->_query_merge(array('docent-display' => 'grid'));
-		$data['links']['list'] = $this->_query_merge(array('docent-display' => 'list'));
-		$data['links']['jump'] = $this->_query_merge(array('docent-letter' => ''));
+		$this->data['links']['grid'] = $this->_query_merge(array('docent-display' => 'grid'));
+		$this->data['links']['list'] = $this->_query_merge(array('docent-display' => 'list'));
+		$this->data['links']['jump'] = $this->_query_merge(array('docent-letter' => ''));
+		$this->data['links']['export'] = $this->_query_merge(array('docent-export' => ''));
 
 		// TO DO: Move this into Docent Model / WPModel
-		$args = [
+		$this->query_args = [
 	    	'role__in' => ['administrator', 'docent'],
 	    	'search_columns' => array('user_email'),
 		    'order' => 'ASC',
@@ -82,18 +84,18 @@ class DirectoryList extends \Factor1\Shortcode {
 		// Add search terms
 		if(!empty($_REQUEST['search']))
 		{
-			// $args['_meta_or_search'] = '*' . esc_attr($_REQUEST['search']) . '*';
-			$args['meta_query'][] = array(
+			// $this->query_args['_meta_or_search'] = '*' . esc_attr($_REQUEST['search']) . '*';
+			$this->query_args['meta_query'][] = array(
 				'key' => 'first_name',
 				'value' => esc_attr($_REQUEST['search']),
 				'compare' => 'LIKE',
 			);
-			$args['meta_query'][] = array(
+			$this->query_args['meta_query'][] = array(
 				'key' => 'last_name',
 				'value' => esc_attr($_REQUEST['search']),
 				'compare' => 'LIKE',
 			);
-			$args['meta_query'][] = array(
+			$this->query_args['meta_query'][] = array(
 				'key' => 'class_year',
 				'value' => esc_attr($_REQUEST['search']),
 				'compare' => '=',
@@ -102,7 +104,7 @@ class DirectoryList extends \Factor1\Shortcode {
 
 		if(!empty($query_vars['docent-letter']) && empty($_REQUEST['search']))
 		{
-			$args['meta_query'][] = array(
+			$this->query_args['meta_query'][] = array(
 				'key' => 'last_name',
 				'value' => '^' . $query_vars['docent-letter'] . '.*',
 				'compare' => 'REGEXP',
@@ -114,7 +116,7 @@ class DirectoryList extends \Factor1\Shortcode {
 			if($query_vars['docent-designation'] != 'ST')
 			{
 				$full_designations = array_flip($this->designations);
-				$args['meta_query'][] = array(
+				$this->query_args['meta_query'][] = array(
 					'key' => 'docent_designation',
 					'value' => $full_designations[$query_vars['docent-designation']],
 					'compare' => '=',
@@ -122,7 +124,12 @@ class DirectoryList extends \Factor1\Shortcode {
 			}
 		}
 
-		$docent_query = new \WP_User_Query($args);
+		if($query_vars['docent-export'])
+		{
+			return null;
+		}
+
+		$docent_query = new \WP_User_Query($this->query_args);
 		if(!empty($docent_query->results))
 		{
 			foreach($docent_query->results as $docent)
@@ -174,16 +181,16 @@ class DirectoryList extends \Factor1\Shortcode {
 
 				if($attributes['show_letter_headers'])
 				{
-					$data['docents'][$first_letter_last_name][$docent->ID] = $docent;
+					$this->data['docents'][$first_letter_last_name][$docent->ID] = $docent;
 				}
 				else
 				{
-					$data['docents'][$docent->ID] = $docent;
+					$this->data['docents'][$docent->ID] = $docent;
 				}
 			}
 		}
 
-		return $this->render($template, $data);
+		return $this->render($template, $this->data);
 	}
 
 	public function user_meta_OR_search($q)
@@ -221,6 +228,47 @@ class DirectoryList extends \Factor1\Shortcode {
         	});
         }
         */
+    }
+
+    public function _pre_render() {
+		global $wp_query;
+
+		if(current_user_can('administrator') &&
+	    	!empty($wp_query->query_vars) &&
+	    	array_key_exists('docent-export', $wp_query->query_vars)
+	    ) {
+		    $this->_shortcode_merge(array());
+		    $docent_query = new \WP_User_Query($this->query_args);
+
+		    if(!empty($docent_query->results))
+			{
+				$headings = array('Name', 'Email', 'Address', 'Primary Phone');
+				$fh = fopen('php://output', 'w');
+				ob_start();
+				fputcsv($fh, $headings);
+				foreach($docent_query->results as $docent)
+				{
+					fputcsv($fh, array(
+						$docent->first_name . ' ' . $docent->last_name,
+						$docent->user_email,
+						!empty($docent->address) ? implode(' ', $docent->address) : null,
+						$docent->primary_phone_group_primary_phone,
+					));
+				}
+				$string = ob_get_clean();
+				$filename = 'docent_export_' . date('m.d.Y');
+
+				header("Pragma: public");
+				header("Expires: 0");
+				header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+				header("Cache-Control: private",false);
+				header("Content-Type: text/csv");
+				header("Content-Disposition: attachment; filename=\"$filename.csv\";");
+				header("Content-Transfer-Encoding: binary");
+
+				exit($string);
+			}
+	    }
     }
 
 }

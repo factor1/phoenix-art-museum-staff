@@ -23,7 +23,7 @@
 			    	<?php if(empty($query['docent-designation'])): ?>selected="selected"<?php endif; ?>>All</option>
 			    <?php foreach($designations as $designation => $abbreviation): ?>
 			    	<option value="<?php echo $abbreviation; ?>"
-			    		<?php if($abbreviation == $query['docent-designation']): ?>selected="selected"<?php endif; ?>>
+			    		<?php if(!empty($query['docent-designation']) && $abbreviation == $query['docent-designation']): ?>selected="selected"<?php endif; ?>>
 			    			<?php echo $designation; ?>
 			    		</option>
 				<?php endforeach; ?>

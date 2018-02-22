@@ -41,4 +41,12 @@
 		<?php endforeach; ?>
 	<?php endif; ?>
 
+	<?php if($is_admin): ?>
+		<div class="s-row single-staff">
+			<div class="s-col-12 col--flex-column">
+				<a href="<?php echo $links['export']; ?>" class="staff-export">Export Results As CSV</a>
+			</div>
+		</div>
+	<?php endif; ?>
+
 </section>

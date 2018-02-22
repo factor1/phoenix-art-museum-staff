@@ -48,6 +48,7 @@ class Directory {
 		'docent-designation',
 		'docent-tour',
 		'docent-display',
+		'docent-export',
 	);
 	public static $rewrite_endpoints = array(
 		'docent-letter',

@@ -13,6 +13,7 @@ class Shortcode {
 	protected $cache_enabled;
 	protected $cache;
 	protected $cache_id;
+	protected $data;
 
 	public $query_array = array();
 
@@ -28,6 +29,11 @@ class Shortcode {
 		}
 
 		add_shortcode($this->tag, array($this, '_shortcode_merge'));
+
+		// Pre-page-render action
+		add_filter('wp', function() {
+			$this->_pre_render();
+		});
 	}
 
 	public function shortcode($attributes = array(), $query_vars = array()) {
@@ -88,5 +94,7 @@ class Shortcode {
 
 		return null;
 	}
+
+	public function _pre_render() {}
 
 }
