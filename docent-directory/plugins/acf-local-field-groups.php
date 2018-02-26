@@ -527,7 +527,7 @@ acf_add_local_field_group(array(
 		),
 		array(
 			'key' => 'field_5a18c86c1b742',
-			'label' => 'Tour Types',
+			'label' => 'I am interested in these areas of service:',
 			'name' => 'tour_types',
 			'type' => 'checkbox',
 			'instructions' => '',

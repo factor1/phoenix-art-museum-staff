@@ -127,7 +127,7 @@
 				visibility: hidden;
 			}
 			#theme-my-login .acf-field-checkbox[data-name="tour_types"] .acf-add-checkbox:before {
-				content: 'Add another Tour Type';
+				content: 'Add another';
 				visibility: visible;
 			}
 
