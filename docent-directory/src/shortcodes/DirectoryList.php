@@ -242,17 +242,44 @@ class DirectoryList extends \Factor1\Shortcode {
 
 		    if(!empty($docent_query->results))
 			{
-				$headings = array('Name', 'Email', 'Address', 'Primary Phone');
+				$headings = array(
+					'Name',
+					'Email',
+					'Spouse/Partner',
+					'Address',
+					'Primary Phone',
+					'Alternate Phone 1',
+					'Alternate Phone 2',
+					'Docent Designation',
+					'Class Year',
+					'Past President (Years of Service)',
+				);
 				$fh = fopen('php://output', 'w');
 				ob_start();
 				fputcsv($fh, $headings);
 				foreach($docent_query->results as $docent)
 				{
+					$docent_president_years = null;
+					if($docent->past_president)
+					{
+						$docent_president_years = $docent->years_of_office_years_of_office_start;
+						if(!empty($docent->years_of_office_years_of_office_end))
+						{
+							$docent_president_years .= ' - ' . $docent->years_of_office_years_of_office_end;
+						}
+					}
+
 					fputcsv($fh, array(
 						$docent->first_name . ' ' . $docent->last_name,
 						$docent->user_email,
+						$docent->spouse_partner,
 						!empty($docent->address) ? implode(' ', $docent->address) : null,
 						$docent->primary_phone_group_primary_phone,
+						$docent->alternate1_phone_group_alternate1_phone,
+						$docent->alternate2_phone_group_alternate2_phone,
+						$docent->docent_designation,
+						$docent->class_year,
+						$docent_president_years,
 					));
 				}
 				$string = ob_get_clean();

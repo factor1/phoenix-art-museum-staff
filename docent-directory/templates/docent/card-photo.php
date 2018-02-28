@@ -12,7 +12,7 @@
 		<h3 class="staff-name">
 			<span class="staff-name__last"><?php echo $docent->last_name; ?></span>,
 			<?php echo $docent->first_name; ?>
-			<?php if(!empty($docent->address)): ?>
+			<?php if(!empty($docent->spouse_partner)): ?>
 				<span class="staff-spouse_partner">
 					<?php echo $docent->spouse_partner; ?>
 				</span>
