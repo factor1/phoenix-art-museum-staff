@@ -70,7 +70,7 @@ class DirectoryList extends \Factor1\Shortcode {
 
 		// TO DO: Move this into Docent Model / WPModel
 		$this->query_args = [
-	    	'role__in' => ['administrator', 'docent'],
+	    	'role__in' => ['administrator', 'editor', 'docent'],
 	    	'search_columns' => array('user_email'),
 		    'order' => 'ASC',
 		    'orderby' => 'meta_value',
