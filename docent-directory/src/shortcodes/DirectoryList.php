@@ -38,6 +38,7 @@ class DirectoryList extends \Factor1\Shortcode {
 	);
 
 	public function shortcode($attributes = array(), $query_vars = array()) {
+		$current_user = wp_get_current_user();
 		$template = 'directory/list';
 		$this->data = array(
 			'show_alphabet_index' => $attributes['show_alphabet_index'],
@@ -46,7 +47,7 @@ class DirectoryList extends \Factor1\Shortcode {
 			'show_letter_headers' => $attributes['show_letter_headers'],
 			'show_photo_card' => (empty($query_vars['docent-display']) || ($query_vars['docent-display'] == 'grid')),
 			'photo_size' => $attributes['photo_size'],
-			'is_admin' => current_user_can('administrator'),
+			'is_admin' => current_user_can('administrator') || current_user_can('web_admin'),
 			'query' => array_filter($query_vars),
 			'links' => array(),
 			'designations' => $this->designations,
@@ -233,7 +234,7 @@ class DirectoryList extends \Factor1\Shortcode {
     public function _pre_render() {
 		global $wp_query;
 
-		if(current_user_can('administrator') &&
+		if((current_user_can('administrator') || current_user_can('web_admin'))&&
 	    	!empty($wp_query->query_vars) &&
 	    	array_key_exists('docent-export', $wp_query->query_vars)
 	    ) {

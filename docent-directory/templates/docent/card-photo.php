@@ -1,11 +1,11 @@
 <div class="s-row single-staff">
 	<div class="s-col-2 col--flex-column">
-		<?php if(!empty($docent->photo)): ?>
+		<?php if(!empty($docent->photo) && !empty(wp_get_attachment_image($docent->photo, $photo_size))): ?>
 			<?php echo wp_get_attachment_image($docent->photo, $photo_size); ?>
-		<?php elseif(false): ?>
-			<img src="<?php echo get_avatar_url($docent); ?>" alt="staff-title" class="staff-img" />
 		<?php else: ?>
-			<img src="<?php echo Factor1_ASSET_URL; ?>/img/staff.png" alt="staff-title" class="staff-img" />
+			<img src="<?php echo get_avatar_url($docent, array('default' => Factor1_ASSET_URL . '/img/staff.png')); ?>"
+				alt="staff-title"
+				class="staff-img" />
 		<?php endif; ?>
 	</div>
 	<div class="s-col-10 col--flex-column">
@@ -71,7 +71,7 @@
 						<?php echo $docent->docent_designation; ?>
 					</span>
 				</p>
-				<?php if(!$docent->is_staff): ?>
+				<?php if(!$docent->is_staff && !$docent->docent_designation == 'Honorary'): ?>
 					<p class="w3-tooltip">
 						<?php echo $docent->class_year; ?>
 						<span class="w3-text">
