@@ -71,7 +71,7 @@
 						<?php echo $docent->docent_designation; ?>
 					</span>
 				</p>
-				<?php if(!$docent->is_staff && !$docent->docent_designation == 'Honorary'): ?>
+				<?php if(!$docent->is_staff && $docent->docent_designation != 'Honorary'): ?>
 					<p class="w3-tooltip">
 						<?php echo $docent->class_year; ?>
 						<span class="w3-text">
