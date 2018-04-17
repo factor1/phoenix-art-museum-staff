@@ -155,7 +155,7 @@ class DirectoryList extends \Factor1\Shortcode {
 
 				// Skip to next user (without adding it) if we're searching for staff and they are not staff
 				if(!empty($query_vars['docent-designation']) &&
-					$query_vars['docent-designation'] == 'ST' && $docent->docent_designation != 'Staff')
+					$query_vars['docent-designation'] == 'ST' && !$docent->is_staff)
 				{
 					continue;
 				}
@@ -170,7 +170,7 @@ class DirectoryList extends \Factor1\Shortcode {
 					}
 				}
 
-				// Remove users that don't have the cirrect docent designation if we're searching
+				// Remove users that don't have the correct docent designation if we're searching
 				// AND we have the $query_vars['docent-designation'] filter
 				if(!empty($_REQUEST['search']) && !empty($query_vars['docent-designation']))
 				{
